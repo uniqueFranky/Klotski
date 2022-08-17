@@ -43,6 +43,9 @@ class PersonController {
     var position: Position {
         didSet {
             movePersonViewToCurrentPosition(animated: true)
+            if name == "caoCao" && position.x == 3 && position.y == 1 {
+                gameManager?.playerWin()
+            }
         }
     }
     let size: Size

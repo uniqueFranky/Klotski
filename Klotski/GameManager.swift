@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 
 class GameManager {
@@ -30,6 +31,21 @@ class GameManager {
             pc.gameManager = self
             personControllers.append(pc)
             setOccupyFor(pc, occupied: true)
+        }
+    }
+    
+    func playerWin() {
+        guard let gameViewController = gameViewController else {
+            fatalError("gameViewController not found")
+        }
+
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "You Win!", message: "恭喜🎉！\n您用了\(gameViewController.nowStep)步完成", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "再来一次", style: .default) { _ in
+                self.restartGame()
+            }
+            alert.addAction(okAction)
+            gameViewController.present(alert, animated: true)
         }
     }
     
