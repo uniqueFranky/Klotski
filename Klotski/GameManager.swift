@@ -38,4 +38,17 @@ class GameManager {
         }
         
     }
+    
+    func restartGame() {
+        personControllers.forEach { weakPc in
+            guard let pc = weakPc.value else {
+                fatalError("unexpected weak value \(weakPc)")
+            }
+            guard let config = personConfigs[pc.name] else {
+                fatalError("unexpected personName \(pc.name)")
+            }
+            
+            pc.position = config.position
+        }
+    }
 }

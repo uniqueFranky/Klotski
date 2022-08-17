@@ -46,9 +46,11 @@ class PersonController {
         }
     }
     let size: Size
+    let name: String
     weak var gameManager: GameManager?
     
     private init(personName: String, x: Int, y: Int, width: Int, height: Int) {
+        self.name = personName
         personView = PersonView(name: personName, controller: nil)
         position = Position(x: x, y: y)
         size = Size(width: width, height: height)
