@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
         let gameVC = GameViewController()
-        let GameManager = GameManager(gameViewController: gameVC)
+        let gameManager = GameManager(gameViewController: gameVC)
         window?.rootViewController = gameVC
         window?.makeKeyAndVisible()
     }

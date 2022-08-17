@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-struct Position {
+struct Position: Hashable {
     var x: Int
     var y: Int
     
@@ -39,7 +39,7 @@ struct PersonConfig {
 }
 
 class PersonController {
-    private let personView: PersonView
+    let personView: PersonView
     var position: Position {
         didSet {
             movePersonViewToCurrentPosition()
@@ -48,6 +48,7 @@ class PersonController {
     let size: Size
     let name: String
     weak var gameManager: GameManager?
+    var touchStartPoint: CGPoint?
     
     private init(personName: String, x: Int, y: Int, width: Int, height: Int) {
         self.name = personName
@@ -79,6 +80,33 @@ class PersonController {
             x: singleCellWidth * CGFloat(position.y),
             y: topGap + singleCellWidth * CGFloat(position.x)
         )
+    }
+    
+    func touchBegan(at point: CGPoint) {
+        touchStartPoint = point
+    }
+    
+    func touchEnd(at point: CGPoint) {
+        guard let touchStartPoint = touchStartPoint else {
+            return
+        }
+        let xOffset = point.x - touchStartPoint.x
+        let yOffset = point.y - touchStartPoint.y
+        
+        if abs(xOffset) > abs(yOffset) { // left or right
+            if xOffset > 0 {
+                gameManager?.tryToMove(self, direction: .right)
+            } else {
+                gameManager?.tryToMove(self, direction: .left)
+            }
+        } else { // up or down
+            if yOffset > 0 {
+                gameManager?.tryToMove(self, direction: .down)
+            } else {
+                gameManager?.tryToMove(self, direction: .up)
+            }
+        }
+        self.touchStartPoint = nil
     }
     
 }

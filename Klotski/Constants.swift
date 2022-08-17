@@ -11,6 +11,10 @@ let screenWidth: CGFloat = UIScreen.main.bounds.width
 let screenHeight: CGFloat = UIScreen.main.bounds.height
 let singleCellWidth: CGFloat = screenWidth / 4
 let topGap: CGFloat = (screenHeight - screenWidth) / 2
+let maximumX = 4
+let minimumX = 0
+let maximumY = 3
+let minimumY = 0
 let personNames = [
     "soldier1",
     "soldier2",
@@ -36,3 +40,23 @@ let personConfigs: [String: PersonConfig] = [
     "guanYu"      :     PersonConfig(x: 2, y: 1, width: 2, height: 1),
     "zhangFei"    :     PersonConfig(x: 2, y: 3, width: 1, height: 2),
 ]
+
+enum MoveDirection {
+    case up
+    case down
+    case left
+    case right
+}
+
+func offsetForDirection(_ direction: MoveDirection) -> Position {
+    switch direction {
+    case .up:
+        return Position(x: -1, y: 0)
+    case .down:
+        return Position(x: 1, y: 0)
+    case .left:
+        return Position(x: 0, y: -1)
+    case .right:
+        return Position(x: 0, y: 1)
+    }
+}

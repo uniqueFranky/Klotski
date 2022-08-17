@@ -43,13 +43,19 @@ class PersonView: UIView {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
-        print(touches.first?.location(in: superview))
+        guard let touch = touches.first else {
+            return
+        }
+        controller?.touchBegan(at: touch.location(in: self))
 
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
-        print(touches.first?.location(in: superview))
+        guard let touch = touches.first else {
+            return
+        }
+        controller?.touchEnd(at: touch.location(in: self))
     }
     
 }
