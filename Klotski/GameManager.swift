@@ -12,6 +12,7 @@ class GameManager {
     weak var gameViewController: GameViewController?
     var personControllers: [PersonController]
     var isOccupied: [Position: Bool] = [: ]
+    var stepStack: [Step] = []
     init(gameViewController: GameViewController) {
         self.gameViewController = gameViewController
         self.personControllers = []
@@ -25,11 +26,26 @@ class GameManager {
 
         personNames.forEach { personName in
             let pc = PersonController(personName: personName)
-            pc.addPersonViewToSuperView(gameViewController.view)
+            pc.addPersonViewToSuperView(gameViewController.gameView)
             pc.gameManager = self
             personControllers.append(pc)
             setOccupyFor(pc, occupied: true)
         }
+    }
+    
+    func undoMove() {
+        guard let step = stepStack.popLast() else { return }
+        switch step.direction {
+        case .down:
+            movePerson(step.personController, direction: .up)
+        case .up:
+            movePerson(step.personController, direction: .down)
+        case .left:
+            movePerson(step.personController, direction: .right)
+        case.right:
+            movePerson(step.personController, direction: .left)
+        }
+        gameViewController?.nowStep -= 1
     }
     
     func restartGame() {
@@ -37,9 +53,12 @@ class GameManager {
             guard let config = personConfigs[pc.name] else {
                 fatalError("unexpected personName \(pc.name)")
             }
-            
+            setOccupyFor(pc, occupied: false)
             pc.position = config.position
+            setOccupyFor(pc, occupied: true)
+            gameViewController?.nowStep = 0
         }
+        stepStack = []
     }
     
     func tryToMove(_ sender: PersonController, direction: MoveDirection) {
@@ -47,12 +66,36 @@ class GameManager {
             setOccupyFor(sender, occupied: false)
             sender.position.x += offsetForDirection(direction).x
             sender.position.y += offsetForDirection(direction).y
+            stepStack.append(Step(personController: sender, direction: direction))
             setOccupyFor(sender, occupied: true)
+            gameViewController?.nowStep += 1
         } else {
             return
         }
     }
     
+    private func movePerson(_ personController: PersonController, direction: MoveDirection) {
+        setOccupyFor(personController, occupied: false)
+        personController.position.x += offsetForDirection(direction).x
+        personController.position.y += offsetForDirection(direction).y
+        setOccupyFor(personController, occupied: true)
+    }
+    
+    private func setOccupyFor(_ personController: PersonController, occupied: Bool) {
+        for i in
+                personController.position.x ..< personController.position.x + personController.size.height {
+            for j in
+                    personController.position.y ..< personController.position.y + personController.size.width {
+                isOccupied[Position(x: i, y: j)] = occupied
+            }
+        }
+    }
+    
+    
+}
+
+
+extension GameManager { // judge whether can move
     private func canMove(_ personController: PersonController, direction: MoveDirection) -> Bool {
         let offset = offsetForDirection(direction)
         let newPosition = Position(x: personController.position.x + offset.x,
@@ -111,16 +154,4 @@ class GameManager {
         }
         return true
     }
-    
-    private func setOccupyFor(_ personController: PersonController, occupied: Bool) {
-        for i in
-                personController.position.x ..< personController.position.x + personController.size.height {
-            for j in
-                    personController.position.y ..< personController.position.y + personController.size.width {
-                isOccupied[Position(x: i, y: j)] = occupied
-            }
-        }
-    }
-    
-    
 }

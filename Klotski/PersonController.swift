@@ -42,7 +42,7 @@ class PersonController {
     let personView: PersonView
     var position: Position {
         didSet {
-            movePersonViewToCurrentPosition()
+            movePersonViewToCurrentPosition(animated: true)
         }
     }
     let size: Size
@@ -55,7 +55,7 @@ class PersonController {
         personView = PersonView(name: personName, controller: nil)
         position = Position(x: x, y: y)
         size = Size(width: width, height: height)
-        movePersonViewToCurrentPosition()
+        movePersonViewToCurrentPosition(animated: false)
         personView.controller = self
     }
     
@@ -75,11 +75,21 @@ class PersonController {
         superView.addSubview(personView)
     }
     
-    private func movePersonViewToCurrentPosition() {
-        personView.frame.origin = CGPoint(
-            x: singleCellWidth * CGFloat(position.y),
-            y: topGap + singleCellWidth * CGFloat(position.x)
-        )
+    private func movePersonViewToCurrentPosition(animated: Bool) {
+        if animated {
+            UIView.animate(withDuration: 0.3) {
+                self.personView.frame.origin = CGPoint(
+                    x: singleCellWidth * CGFloat(self.position.y),
+                    y: singleCellWidth * CGFloat(self.position.x)
+                )
+            }
+        } else {
+            self.personView.frame.origin = CGPoint(
+                x: singleCellWidth * CGFloat(self.position.y),
+                y: singleCellWidth * CGFloat(self.position.x)
+            )
+        }
+
     }
     
     func touchBegan(at point: CGPoint) {

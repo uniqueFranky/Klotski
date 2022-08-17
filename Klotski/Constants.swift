@@ -10,7 +10,7 @@ import UIKit
 let screenWidth: CGFloat = UIScreen.main.bounds.width
 let screenHeight: CGFloat = UIScreen.main.bounds.height
 let singleCellWidth: CGFloat = screenWidth / 4
-let topGap: CGFloat = (screenHeight - screenWidth) / 2
+let topGap: CGFloat = (screenHeight - singleCellWidth * 5) / 2
 let maximumX = 4
 let minimumX = 0
 let maximumY = 3

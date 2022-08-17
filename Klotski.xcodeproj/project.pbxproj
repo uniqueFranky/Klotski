@@ -16,6 +16,7 @@
 		317126A328A7954300E9EC13 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317126A228A7954300E9EC13 /* GameViewController.swift */; };
 		317126A928A7954300E9EC13 /* Klotski.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 317126A728A7954300E9EC13 /* Klotski.xcdatamodeld */; };
 		317126AB28A7954400E9EC13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 317126AA28A7954400E9EC13 /* Assets.xcassets */; };
+		3195271128AD191000997138 /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3195271028AD191000997138 /* Step.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		317126A828A7954300E9EC13 /* Klotski.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Klotski.xcdatamodel; sourceTree = "<group>"; };
 		317126AA28A7954400E9EC13 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		317126AF28A7954400E9EC13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3195271028AD191000997138 /* Step.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 				317126A228A7954300E9EC13 /* GameViewController.swift */,
 				31154C5728ACDAB0001C1FCA /* PersonView.swift */,
 				31154C5D28ACE9C4001C1FCA /* GameManager.swift */,
+				3195271028AD191000997138 /* Step.swift */,
 				31154C5B28ACDE55001C1FCA /* PersonController.swift */,
 				31154C5928ACDBB0001C1FCA /* Constants.swift */,
 				317126AA28A7954400E9EC13 /* Assets.xcassets */,
@@ -147,6 +150,7 @@
 			files = (
 				31154C5828ACDAB0001C1FCA /* PersonView.swift in Sources */,
 				31154C5E28ACE9C4001C1FCA /* GameManager.swift in Sources */,
+				3195271128AD191000997138 /* Step.swift in Sources */,
 				317126A328A7954300E9EC13 /* GameViewController.swift in Sources */,
 				317126A928A7954300E9EC13 /* Klotski.xcdatamodeld in Sources */,
 				3171269F28A7954300E9EC13 /* AppDelegate.swift in Sources */,
