@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class Position {
+struct Position {
     var x: Int
     var y: Int
     
@@ -18,13 +18,23 @@ class Position {
     }
 }
 
-class Size {
+struct Size {
     var width: Int
     var height: Int
     
     init(width: Int, height: Int) {
         self.width = width
         self.height = height
+    }
+}
+
+struct PersonConfig {
+    let position: Position
+    let size: Size
+    
+    init(x: Int, y: Int, width: Int, height: Int) {
+        self.position = Position(x: x, y: y)
+        self.size = Size(width: width, height: height)
     }
 }
 
@@ -36,6 +46,7 @@ class PersonController {
         }
     }
     let size: Size
+    weak var gameManager: GameManager?
     
     private init(personName: String, x: Int, y: Int, width: Int, height: Int) {
         personView = PersonView(name: personName, controller: nil)
@@ -46,30 +57,15 @@ class PersonController {
     }
     
     
+    private convenience init(personName: String, position: Position, size: Size) {
+        self.init(personName: personName, x: position.x, y: position.y, width: size.width, height: size.height)
+    }
+    
     convenience init(personName: String) {
-        if personName == "soldier1" {
-            self.init(personName: "soldier", x: 4, y: 0, width: 1, height: 1)
-        } else if personName == "soldier2" {
-            self.init(personName: "soldier", x: 4, y: 3, width: 1, height: 1)
-        } else if personName == "soldier3" {
-            self.init(personName: "soldier", x: 3, y: 1, width: 1, height: 1)
-        } else if personName == "soldier4" {
-            self.init(personName: "soldier", x: 3, y: 2, width: 1, height: 1)
-        } else if personName == "maChao" {
-            self.init(personName: personName, x: 0, y: 0, width: 1, height: 2)
-        } else if personName == "caoCao" {
-            self.init(personName: personName, x: 0, y: 1, width: 2, height: 2)
-        } else if personName == "zhaoYun" {
-            self.init(personName: personName, x: 0, y: 3, width: 1, height: 2)
-        } else if personName == "huangZhong" {
-            self.init(personName: personName, x: 2, y: 0, width: 1, height: 2)
-        } else if personName == "guanYu" {
-            self.init(personName: personName, x: 2, y: 1, width: 2, height: 1)
-        } else if personName == "zhangFei" {
-            self.init(personName: personName, x: 2, y: 3, width: 1, height: 2)
-        } else {
-            fatalError("unexpected personName")
+        guard let config = personConfigs[personName] else {
+            fatalError("unexpected personName \(personName)")
         }
+        self.init(personName: personName, position: config.position, size: config.size)
     }
     
     func addPersonViewToSuperView(_ superView: UIView) {

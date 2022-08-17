@@ -21,26 +21,20 @@ class PersonView: UIView {
     init(frame: CGRect, name: String, controller: PersonController?) {
         imageView = UIImageView(frame: frame)
         imageView.image = UIImage(named: name)
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleToFill
         self.controller = controller
         super.init(frame: frame)
         addSubview(imageView)
     }
     
     convenience init(name: String, controller: PersonController?) {
-        if name == "soldier" {
-            self.init(frame: CGRect(x: 0, y: 0, width: singleCellWidth, height: singleCellWidth),
-                      name: name, controller: controller)
-        } else if name == "caoCao" {
-            self.init(frame: CGRect(x: 0, y: 0, width: singleCellWidth * 2, height: singleCellWidth * 2),
-                      name: name, controller: controller)
-        } else if name == "guanYu" {
-            self.init(frame: CGRect(x: 0, y: 0, width: singleCellWidth * 2, height: singleCellWidth),
-                      name: name, controller: controller)
-        } else {
-            self.init(frame: CGRect(x: 0, y: 0, width: singleCellWidth, height: singleCellWidth * 2),
-                      name: name, controller: controller)
+        guard let config = personConfigs[name] else {
+            fatalError("unexpected personName \(name)")
         }
+        let rect = CGRect(x: 0, y: 0,
+                          width: CGFloat(config.size.width) * singleCellWidth,
+                          height: CGFloat(config.size.height) * singleCellWidth)
+        self.init(frame: rect, name: name, controller: controller)
     }
     
     required init?(coder: NSCoder) {

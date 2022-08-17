@@ -33,6 +33,7 @@ class GameManager {
         personNames.forEach { personName in
             let pc = PersonController(personName: personName)
             pc.addPersonViewToSuperView(gameViewController.view)
+            pc.gameManager = self
             personControllers.append(Weak<PersonController>(value: pc))
         }
         
