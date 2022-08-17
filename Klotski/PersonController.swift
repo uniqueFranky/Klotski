@@ -29,20 +29,20 @@ class Size {
 }
 
 class PersonController {
-    let personView: PersonView
+    private let personView: PersonView
     var position: Position {
         didSet {
-            
-            // TODO: move personView to the new position
-            
+            movePersonViewToCurrentPosition()
         }
     }
     let size: Size
     
-    init(personName: String, x: Int, y: Int, width: Int, height: Int) {
-        personView = PersonView(name: personName)
+    private init(personName: String, x: Int, y: Int, width: Int, height: Int) {
+        personView = PersonView(name: personName, controller: nil)
         position = Position(x: x, y: y)
         size = Size(width: width, height: height)
+        movePersonViewToCurrentPosition()
+        personView.controller = self
     }
     
     
@@ -60,13 +60,13 @@ class PersonController {
         } else if personName == "caoCao" {
             self.init(personName: personName, x: 0, y: 1, width: 2, height: 2)
         } else if personName == "zhaoYun" {
-            self.init(personName: personName, x: 3, y: 0, width: 1, height: 2)
+            self.init(personName: personName, x: 0, y: 3, width: 1, height: 2)
         } else if personName == "huangZhong" {
             self.init(personName: personName, x: 2, y: 0, width: 1, height: 2)
         } else if personName == "guanYu" {
             self.init(personName: personName, x: 2, y: 1, width: 2, height: 1)
         } else if personName == "zhangFei" {
-            self.init(personName: personName, x: 2, y: 2, width: 1, height: 2)
+            self.init(personName: personName, x: 2, y: 3, width: 1, height: 2)
         } else {
             fatalError("unexpected personName")
         }
@@ -74,6 +74,13 @@ class PersonController {
     
     func addPersonViewToSuperView(_ superView: UIView) {
         superView.addSubview(personView)
+    }
+    
+    private func movePersonViewToCurrentPosition() {
+        personView.frame.origin = CGPoint(
+            x: singleCellWidth * CGFloat(position.y),
+            y: topGap + singleCellWidth * CGFloat(position.x)
+        )
     }
     
 }

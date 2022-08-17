@@ -17,27 +17,29 @@ class PersonView: UIView {
     }
     */
     let imageView: UIImageView
-    init(frame: CGRect, name: String) {
+    weak var controller: PersonController?
+    init(frame: CGRect, name: String, controller: PersonController?) {
         imageView = UIImageView(frame: frame)
         imageView.image = UIImage(named: name)
         imageView.contentMode = .scaleAspectFill
+        self.controller = controller
         super.init(frame: frame)
         addSubview(imageView)
     }
     
-    convenience init(name: String) {
+    convenience init(name: String, controller: PersonController?) {
         if name == "soldier" {
             self.init(frame: CGRect(x: 0, y: 0, width: singleCellWidth, height: singleCellWidth),
-                      name: name)
+                      name: name, controller: controller)
         } else if name == "caoCao" {
             self.init(frame: CGRect(x: 0, y: 0, width: singleCellWidth * 2, height: singleCellWidth * 2),
-                      name: name)
+                      name: name, controller: controller)
         } else if name == "guanYu" {
             self.init(frame: CGRect(x: 0, y: 0, width: singleCellWidth * 2, height: singleCellWidth),
-                      name: name)
+                      name: name, controller: controller)
         } else {
             self.init(frame: CGRect(x: 0, y: 0, width: singleCellWidth, height: singleCellWidth * 2),
-                      name: name)
+                      name: name, controller: controller)
         }
     }
     
@@ -45,5 +47,15 @@ class PersonView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        print(touches.first?.location(in: superview))
+
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
+        print(touches.first?.location(in: superview))
+    }
     
 }
