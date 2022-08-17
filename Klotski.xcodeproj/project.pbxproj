@@ -7,24 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		31154C5828ACDAB0001C1FCA /* PersonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31154C5728ACDAB0001C1FCA /* PersonView.swift */; };
+		31154C5A28ACDBB0001C1FCA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31154C5928ACDBB0001C1FCA /* Constants.swift */; };
+		31154C5C28ACDE55001C1FCA /* PersonController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31154C5B28ACDE55001C1FCA /* PersonController.swift */; };
 		3171269F28A7954300E9EC13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3171269E28A7954300E9EC13 /* AppDelegate.swift */; };
 		317126A128A7954300E9EC13 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317126A028A7954300E9EC13 /* SceneDelegate.swift */; };
 		317126A328A7954300E9EC13 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317126A228A7954300E9EC13 /* ViewController.swift */; };
-		317126A628A7954300E9EC13 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 317126A428A7954300E9EC13 /* Main.storyboard */; };
 		317126A928A7954300E9EC13 /* Klotski.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 317126A728A7954300E9EC13 /* Klotski.xcdatamodeld */; };
 		317126AB28A7954400E9EC13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 317126AA28A7954400E9EC13 /* Assets.xcassets */; };
-		317126AE28A7954400E9EC13 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 317126AC28A7954400E9EC13 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		31154C5728ACDAB0001C1FCA /* PersonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonView.swift; sourceTree = "<group>"; };
+		31154C5928ACDBB0001C1FCA /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		31154C5B28ACDE55001C1FCA /* PersonController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonController.swift; sourceTree = "<group>"; };
 		3171269B28A7954300E9EC13 /* Klotski.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Klotski.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3171269E28A7954300E9EC13 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		317126A028A7954300E9EC13 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		317126A228A7954300E9EC13 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		317126A528A7954300E9EC13 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		317126A828A7954300E9EC13 /* Klotski.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Klotski.xcdatamodel; sourceTree = "<group>"; };
 		317126AA28A7954400E9EC13 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		317126AD28A7954400E9EC13 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		317126AF28A7954400E9EC13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -61,9 +63,10 @@
 				3171269E28A7954300E9EC13 /* AppDelegate.swift */,
 				317126A028A7954300E9EC13 /* SceneDelegate.swift */,
 				317126A228A7954300E9EC13 /* ViewController.swift */,
-				317126A428A7954300E9EC13 /* Main.storyboard */,
+				31154C5728ACDAB0001C1FCA /* PersonView.swift */,
+				31154C5B28ACDE55001C1FCA /* PersonController.swift */,
+				31154C5928ACDBB0001C1FCA /* Constants.swift */,
 				317126AA28A7954400E9EC13 /* Assets.xcassets */,
-				317126AC28A7954400E9EC13 /* LaunchScreen.storyboard */,
 				317126AF28A7954400E9EC13 /* Info.plist */,
 				317126A728A7954300E9EC13 /* Klotski.xcdatamodeld */,
 			);
@@ -128,9 +131,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				317126AE28A7954400E9EC13 /* LaunchScreen.storyboard in Resources */,
 				317126AB28A7954400E9EC13 /* Assets.xcassets in Resources */,
-				317126A628A7954300E9EC13 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,33 +142,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				31154C5828ACDAB0001C1FCA /* PersonView.swift in Sources */,
 				317126A328A7954300E9EC13 /* ViewController.swift in Sources */,
 				317126A928A7954300E9EC13 /* Klotski.xcdatamodeld in Sources */,
 				3171269F28A7954300E9EC13 /* AppDelegate.swift in Sources */,
 				317126A128A7954300E9EC13 /* SceneDelegate.swift in Sources */,
+				31154C5C28ACDE55001C1FCA /* PersonController.swift in Sources */,
+				31154C5A28ACDBB0001C1FCA /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		317126A428A7954300E9EC13 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				317126A528A7954300E9EC13 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		317126AC28A7954400E9EC13 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				317126AD28A7954400E9EC13 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		317126B028A7954400E9EC13 /* Debug */ = {
@@ -296,7 +281,6 @@
 				INFOPLIST_FILE = Klotski/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -324,7 +308,6 @@
 				INFOPLIST_FILE = Klotski/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
