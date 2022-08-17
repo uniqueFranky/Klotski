@@ -63,8 +63,12 @@ class PersonController {
     }
     
     
-    private convenience init(personName: String, position: Position, size: Size) {
+    convenience init(personName: String, position: Position, size: Size) {
         self.init(personName: personName, x: position.x, y: position.y, width: size.width, height: size.height)
+    }
+    
+    convenience init(copyOf from: PersonController) {
+        self.init(personName: from.name, position: from.position, size: from.size)
     }
     
     convenience init(personName: String) {

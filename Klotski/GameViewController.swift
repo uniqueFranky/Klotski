@@ -16,6 +16,7 @@ class GameViewController: UIViewController {
     }
     let restartButton = UIButton(type: .system)
     let undoButton = UIButton(type: .system)
+    let solveButton = UIButton(type: .system)
     let scoreLabel = UILabel()
     let gameView = UIView(frame: CGRect(x: 0, y: topGap, width: screenWidth, height: singleCellWidth * 5))
     override func viewDidLoad() {
@@ -27,6 +28,7 @@ class GameViewController: UIViewController {
         configureRestartButton()
         configureUndoButton()
         configureScoreLabel()
+        configureSolveButton()
     }
 }
 
@@ -78,6 +80,23 @@ extension GameViewController {
         ]
         view.addConstraints(constraints)
     }
+    
+    func configureSolveButton() {
+        view.addSubview(solveButton)
+        solveButton.backgroundColor = .systemBlue
+        solveButton.setTitleColor(.white, for: .normal)
+        solveButton.layer.cornerRadius = screenWidth / 40
+        solveButton.setTitle("我走不动了😭", for: .normal)
+        solveButton.addTarget(self, action: #selector(solve), for: .touchUpInside)
+        solveButton.translatesAutoresizingMaskIntoConstraints = false
+        let constraints = [
+            solveButton.topAnchor.constraint(equalTo: gameView.bottomAnchor, constant: 20),
+            solveButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            solveButton.widthAnchor.constraint(equalToConstant: screenWidth - 50),
+            solveButton.heightAnchor.constraint(equalToConstant: 50),
+        ]
+        view.addConstraints(constraints)
+    }
 }
 
 
@@ -88,5 +107,9 @@ extension GameViewController {
     
     @objc func restart() {
         gameManager?.restartGame()
+    }
+    
+    @objc func solve() {
+        gameManager?.autoSolve()
     }
 }

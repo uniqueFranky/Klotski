@@ -41,6 +41,32 @@ let personConfigs: [String: PersonConfig] = [
     "zhangFei"    :     PersonConfig(x: 2, y: 3, width: 1, height: 2),
 ]
 
+let personIds: [String: Int] = [
+    "soldier1"    :     1,
+    "soldier2"    :     2,
+    "soldier3"    :     3,
+    "soldier4"    :     4,
+    "maChao"      :     5,
+    "caoCao"      :     6,
+    "zhaoYun"     :     7,
+    "huangZhong"  :     8,
+    "guanYu"      :     9,
+    "zhangFei"    :     10,
+]
+
+let nameById: [Int: String] = [
+    1 : "soldier1",
+    2 : "soldier2",
+    3 : "soldier3",
+    4 : "soldier4",
+    5 : "maChao",
+    6 : "caoCao",
+    7 : "zhaoYun",
+    8 : "huangZhong",
+    9 : "guanYu",
+    10: "zhangFei",
+]
+
 enum MoveDirection {
     case up
     case down

@@ -11,13 +11,21 @@ import UIKit
 
 class GameManager {
     weak var gameViewController: GameViewController?
-    var personControllers: [PersonController]
+    var personControllers: [PersonController] = []
     var isOccupied: [Position: Bool] = [: ]
     var stepStack: [Step] = []
     init(gameViewController: GameViewController) {
         self.gameViewController = gameViewController
         self.personControllers = []
         gameViewController.gameManager = self
+    }
+    
+    init(gameStatus: GameStatus) {
+        gameStatus.personStatuses.forEach { ps in
+            let pc = PersonController(personName: ps.name, position: ps.position, size: ps.size)
+            personControllers.append(pc)
+            setOccupyFor(pc, occupied: true)
+        }
     }
     
     func initGame() {
@@ -47,6 +55,12 @@ class GameManager {
             alert.addAction(okAction)
             gameViewController.present(alert, animated: true)
         }
+    }
+    
+    func autoSolve() {
+        print("solve")
+        let gameSolver = GameSolver()
+        gameSolver.solve(primaryStatus: GameStatus(personControllers: personControllers))
     }
     
     func undoMove() {
@@ -112,7 +126,7 @@ class GameManager {
 
 
 extension GameManager { // judge whether can move
-    private func canMove(_ personController: PersonController, direction: MoveDirection) -> Bool {
+    func canMove(_ personController: PersonController, direction: MoveDirection) -> Bool {
         let offset = offsetForDirection(direction)
         let newPosition = Position(x: personController.position.x + offset.x,
                                    y: personController.position.y + offset.y)
@@ -170,4 +184,32 @@ extension GameManager { // judge whether can move
         }
         return true
     }
+}
+
+
+extension GameManager {
+    func getPersonControllerByName(_ name: String) -> PersonController {
+        var ret: PersonController?
+        personControllers.forEach { ps in
+            if ps.name == name {
+                ret = ps
+            }
+        }
+        guard let ret = ret else {
+            fatalError("unexpected name \(name)")
+        }
+        return ret
+        
+    }
+    
+    func hasEnd() -> Bool {
+        var end = false
+        personControllers.forEach { ps in
+            if ps.name == "caoCao" && ps.position.x == 3 && ps.position.y == 1 {
+                end = true
+            }
+        }
+        return end
+    }
+    
 }
