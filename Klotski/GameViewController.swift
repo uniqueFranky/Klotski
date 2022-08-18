@@ -23,6 +23,9 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         view.backgroundColor = .white
+        let cpp = CppWrapper()
+        print(cpp.getNum_Wrapped(123))
+        
         gameManager?.initGame()
         configureGameView()
         configureRestartButton()

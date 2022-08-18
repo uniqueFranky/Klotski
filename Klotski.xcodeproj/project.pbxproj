@@ -16,6 +16,8 @@
 		317126A328A7954300E9EC13 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317126A228A7954300E9EC13 /* GameViewController.swift */; };
 		317126A928A7954300E9EC13 /* Klotski.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 317126A728A7954300E9EC13 /* Klotski.xcdatamodeld */; };
 		317126AB28A7954400E9EC13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 317126AA28A7954400E9EC13 /* Assets.xcassets */; };
+		318CF4DF28ADD75F002CD74B /* CppSolver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 318CF4DD28ADD75F002CD74B /* CppSolver.cpp */; };
+		318CF4E128ADD803002CD74B /* CppWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 318CF4E028ADD803002CD74B /* CppWrapper.m */; };
 		3195271128AD191000997138 /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3195271028AD191000997138 /* Step.swift */; };
 		3195271328AD23CD00997138 /* GameSolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3195271228AD23CD00997138 /* GameSolver.swift */; };
 /* End PBXBuildFile section */
@@ -32,8 +34,51 @@
 		317126A828A7954300E9EC13 /* Klotski.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Klotski.xcdatamodel; sourceTree = "<group>"; };
 		317126AA28A7954400E9EC13 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		317126AF28A7954400E9EC13 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		318CF4DD28ADD75F002CD74B /* CppSolver.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CppSolver.cpp; sourceTree = "<group>"; };
+		318CF4DE28ADD75F002CD74B /* CppSolver.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CppSolver.hpp; sourceTree = "<group>"; };
+		318CF4E028ADD803002CD74B /* CppWrapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CppWrapper.m; sourceTree = "<group>"; };
+		318CF4E228ADD80C002CD74B /* CppWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CppWrapper.h; sourceTree = "<group>"; };
 		3195271028AD191000997138 /* Step.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step.swift; sourceTree = "<group>"; };
 		3195271228AD23CD00997138 /* GameSolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSolver.swift; sourceTree = "<group>"; };
+		3195271428ADD28B00997138 /* Klotski-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Klotski-Bridging-Header.h"; sourceTree = "<group>"; };
+		31D09A4D28ADED8500647326 /* fwd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fwd.h; sourceTree = "<group>"; };
+		31D09A4E28ADED8500647326 /* memorystream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = memorystream.h; sourceTree = "<group>"; };
+		31D09A4F28ADED8500647326 /* reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = reader.h; sourceTree = "<group>"; };
+		31D09A5028ADED8500647326 /* prettywriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prettywriter.h; sourceTree = "<group>"; };
+		31D09A5128ADED8500647326 /* ostreamwrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ostreamwrapper.h; sourceTree = "<group>"; };
+		31D09A5228ADED8500647326 /* encodedstream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = encodedstream.h; sourceTree = "<group>"; };
+		31D09A5328ADED8500647326 /* filereadstream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filereadstream.h; sourceTree = "<group>"; };
+		31D09A5428ADED8500647326 /* cursorstreamwrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cursorstreamwrapper.h; sourceTree = "<group>"; };
+		31D09A5528ADED8500647326 /* istreamwrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = istreamwrapper.h; sourceTree = "<group>"; };
+		31D09A5628ADED8500647326 /* uri.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uri.h; sourceTree = "<group>"; };
+		31D09A5728ADED8500647326 /* stringbuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stringbuffer.h; sourceTree = "<group>"; };
+		31D09A5928ADED8500647326 /* ieee754.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ieee754.h; sourceTree = "<group>"; };
+		31D09A5A28ADED8500647326 /* strtod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = strtod.h; sourceTree = "<group>"; };
+		31D09A5B28ADED8500647326 /* swap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = swap.h; sourceTree = "<group>"; };
+		31D09A5C28ADED8500647326 /* regex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = regex.h; sourceTree = "<group>"; };
+		31D09A5D28ADED8500647326 /* diyfp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = diyfp.h; sourceTree = "<group>"; };
+		31D09A5E28ADED8500647326 /* biginteger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = biginteger.h; sourceTree = "<group>"; };
+		31D09A5F28ADED8500647326 /* strfunc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = strfunc.h; sourceTree = "<group>"; };
+		31D09A6028ADED8500647326 /* itoa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = itoa.h; sourceTree = "<group>"; };
+		31D09A6128ADED8500647326 /* stack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stack.h; sourceTree = "<group>"; };
+		31D09A6228ADED8500647326 /* dtoa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dtoa.h; sourceTree = "<group>"; };
+		31D09A6328ADED8500647326 /* clzll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = clzll.h; sourceTree = "<group>"; };
+		31D09A6428ADED8500647326 /* meta.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = meta.h; sourceTree = "<group>"; };
+		31D09A6528ADED8500647326 /* pow10.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pow10.h; sourceTree = "<group>"; };
+		31D09A6628ADED8500647326 /* encodings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = encodings.h; sourceTree = "<group>"; };
+		31D09A6728ADED8500647326 /* schema.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = schema.h; sourceTree = "<group>"; };
+		31D09A6828ADED8500647326 /* stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stream.h; sourceTree = "<group>"; };
+		31D09A6928ADED8500647326 /* filewritestream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = filewritestream.h; sourceTree = "<group>"; };
+		31D09A6A28ADED8500647326 /* rapidjson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rapidjson.h; sourceTree = "<group>"; };
+		31D09A6B28ADED8500647326 /* document.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = document.h; sourceTree = "<group>"; };
+		31D09A6C28ADED8500647326 /* allocators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = allocators.h; sourceTree = "<group>"; };
+		31D09A6D28ADED8500647326 /* writer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = writer.h; sourceTree = "<group>"; };
+		31D09A6F28ADED8500647326 /* error.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = error.h; sourceTree = "<group>"; };
+		31D09A7028ADED8500647326 /* en.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = en.h; sourceTree = "<group>"; };
+		31D09A7128ADED8500647326 /* memorybuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = memorybuffer.h; sourceTree = "<group>"; };
+		31D09A7228ADED8500647326 /* pointer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pointer.h; sourceTree = "<group>"; };
+		31D09A7428ADED8500647326 /* inttypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = inttypes.h; sourceTree = "<group>"; };
+		31D09A7528ADED8500647326 /* stdint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stdint.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,11 +120,86 @@
 				3195271028AD191000997138 /* Step.swift */,
 				31154C5B28ACDE55001C1FCA /* PersonController.swift */,
 				31154C5928ACDBB0001C1FCA /* Constants.swift */,
+				31D09A4C28ADED8500647326 /* rapidjson */,
+				318CF4DE28ADD75F002CD74B /* CppSolver.hpp */,
+				318CF4DD28ADD75F002CD74B /* CppSolver.cpp */,
+				318CF4E228ADD80C002CD74B /* CppWrapper.h */,
+				318CF4E028ADD803002CD74B /* CppWrapper.m */,
 				317126AA28A7954400E9EC13 /* Assets.xcassets */,
 				317126AF28A7954400E9EC13 /* Info.plist */,
 				317126A728A7954300E9EC13 /* Klotski.xcdatamodeld */,
+				3195271428ADD28B00997138 /* Klotski-Bridging-Header.h */,
 			);
 			path = Klotski;
+			sourceTree = "<group>";
+		};
+		31D09A4C28ADED8500647326 /* rapidjson */ = {
+			isa = PBXGroup;
+			children = (
+				31D09A4D28ADED8500647326 /* fwd.h */,
+				31D09A4E28ADED8500647326 /* memorystream.h */,
+				31D09A4F28ADED8500647326 /* reader.h */,
+				31D09A5028ADED8500647326 /* prettywriter.h */,
+				31D09A5128ADED8500647326 /* ostreamwrapper.h */,
+				31D09A5228ADED8500647326 /* encodedstream.h */,
+				31D09A5328ADED8500647326 /* filereadstream.h */,
+				31D09A5428ADED8500647326 /* cursorstreamwrapper.h */,
+				31D09A5528ADED8500647326 /* istreamwrapper.h */,
+				31D09A5628ADED8500647326 /* uri.h */,
+				31D09A5728ADED8500647326 /* stringbuffer.h */,
+				31D09A5828ADED8500647326 /* internal */,
+				31D09A6628ADED8500647326 /* encodings.h */,
+				31D09A6728ADED8500647326 /* schema.h */,
+				31D09A6828ADED8500647326 /* stream.h */,
+				31D09A6928ADED8500647326 /* filewritestream.h */,
+				31D09A6A28ADED8500647326 /* rapidjson.h */,
+				31D09A6B28ADED8500647326 /* document.h */,
+				31D09A6C28ADED8500647326 /* allocators.h */,
+				31D09A6D28ADED8500647326 /* writer.h */,
+				31D09A6E28ADED8500647326 /* error */,
+				31D09A7128ADED8500647326 /* memorybuffer.h */,
+				31D09A7228ADED8500647326 /* pointer.h */,
+				31D09A7328ADED8500647326 /* msinttypes */,
+			);
+			path = rapidjson;
+			sourceTree = "<group>";
+		};
+		31D09A5828ADED8500647326 /* internal */ = {
+			isa = PBXGroup;
+			children = (
+				31D09A5928ADED8500647326 /* ieee754.h */,
+				31D09A5A28ADED8500647326 /* strtod.h */,
+				31D09A5B28ADED8500647326 /* swap.h */,
+				31D09A5C28ADED8500647326 /* regex.h */,
+				31D09A5D28ADED8500647326 /* diyfp.h */,
+				31D09A5E28ADED8500647326 /* biginteger.h */,
+				31D09A5F28ADED8500647326 /* strfunc.h */,
+				31D09A6028ADED8500647326 /* itoa.h */,
+				31D09A6128ADED8500647326 /* stack.h */,
+				31D09A6228ADED8500647326 /* dtoa.h */,
+				31D09A6328ADED8500647326 /* clzll.h */,
+				31D09A6428ADED8500647326 /* meta.h */,
+				31D09A6528ADED8500647326 /* pow10.h */,
+			);
+			path = internal;
+			sourceTree = "<group>";
+		};
+		31D09A6E28ADED8500647326 /* error */ = {
+			isa = PBXGroup;
+			children = (
+				31D09A6F28ADED8500647326 /* error.h */,
+				31D09A7028ADED8500647326 /* en.h */,
+			);
+			path = error;
+			sourceTree = "<group>";
+		};
+		31D09A7328ADED8500647326 /* msinttypes */ = {
+			isa = PBXGroup;
+			children = (
+				31D09A7428ADED8500647326 /* inttypes.h */,
+				31D09A7528ADED8500647326 /* stdint.h */,
+			);
+			path = msinttypes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -114,6 +234,7 @@
 				TargetAttributes = {
 					3171269A28A7954300E9EC13 = {
 						CreatedOnToolsVersion = 13.4.1;
+						LastSwiftMigration = 1340;
 					};
 				};
 			};
@@ -126,6 +247,8 @@
 				Base,
 			);
 			mainGroup = 3171269228A7954300E9EC13;
+			packageReferences = (
+			);
 			productRefGroup = 3171269C28A7954300E9EC13 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -154,6 +277,7 @@
 				3195271328AD23CD00997138 /* GameSolver.swift in Sources */,
 				31154C5828ACDAB0001C1FCA /* PersonView.swift in Sources */,
 				31154C5E28ACE9C4001C1FCA /* GameManager.swift in Sources */,
+				318CF4E128ADD803002CD74B /* CppWrapper.m in Sources */,
 				3195271128AD191000997138 /* Step.swift in Sources */,
 				317126A328A7954300E9EC13 /* GameViewController.swift in Sources */,
 				317126A928A7954300E9EC13 /* Klotski.xcdatamodeld in Sources */,
@@ -161,6 +285,7 @@
 				317126A128A7954300E9EC13 /* SceneDelegate.swift in Sources */,
 				31154C5C28ACDE55001C1FCA /* PersonController.swift in Sources */,
 				31154C5A28ACDBB0001C1FCA /* Constants.swift in Sources */,
+				318CF4DF28ADD75F002CD74B /* CppSolver.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +411,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = LKMBDQA2QL;
@@ -303,6 +429,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = pro.Franky.Klotski;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Klotski/Klotski-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -313,6 +441,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = LKMBDQA2QL;
@@ -330,6 +459,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = pro.Franky.Klotski;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Klotski/Klotski-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

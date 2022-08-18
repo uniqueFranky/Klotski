@@ -57,117 +57,54 @@ struct GameStatus: Hashable {
     }
 }
 
+struct PersonStatusForCpp: Codable {
+    var name: String
+    var position: Position
+    var size: Size
+    
+    init(name: String, position: Position, size: Size) {
+        self.name = name
+        self.position = position
+        self.size = size
+    }
+    
+    init(personController: PersonController) {
+        self.init(name: personController.name,
+                  position: personController.position,
+                  size: personController.size)
+    }
+}
 
+struct GameStatusForCpp: Codable {
+    var personStatuses: [PersonStatusForCpp] = []
+    
+    mutating func appendPersonStatus(_ personStatus: PersonStatusForCpp) {
+        self.personStatuses.append(personStatus)
+    }
+    
+    init(personControllers: [PersonController]) {
+        personControllers.forEach { pc in
+            let ps = PersonStatusForCpp(personController: pc)
+            self.personStatuses.append(ps)
+        }
+    }
+}
 
 class GameSolver {
     
-    var statusQueue: [GameStatus] = []
-    var nowIndex = 0
-    var visited: [GameStatus: Bool] = [: ]
-    func solve(primaryStatus start: GameStatus) {
-        
-        var st = start
-        st.stepNum = 0
-        statusQueue.append(st)
-
-        while nowIndex < statusQueue.count {
-            let gs = statusQueue[nowIndex]
-            nowIndex += 1
-            print(gs.stepNum!)
-            let gameManager = GameManager(gameStatus: gs)
-            gs.personStatuses.forEach { ps in
-                let pc = gameManager.getPersonControllerByName(ps.name)
-                
-                
-                
-                if gameManager.canMove(pc, direction: .up) {
-                    gameManager.tryToMove(pc, direction: .up)
-                    var newGameStatus = GameStatus(personControllers: gameManager.personControllers)
-                    newGameStatus.stepNum = gs.stepNum! + 1
-                    if visited[newGameStatus] == nil || visited[newGameStatus] == false {
-                        visited[newGameStatus] = true
-                        statusQueue.append(newGameStatus)
-//                        print(pc.name, MoveDirection.up)
-                    }
-                    if gameManager.hasEnd() {
-                        print("found")
-                        while nowIndex < statusQueue.count {
-                            statusQueue.popLast()
-                        }
-                        return
-                    }
-                    gameManager.tryToMove(pc, direction: .down)
-                }
-                
-                if gameManager.canMove(pc, direction: .down) {
-                    gameManager.tryToMove(pc, direction: .down)
-                    var newGameStatus = GameStatus(personControllers: gameManager.personControllers)
-                    newGameStatus.stepNum = gs.stepNum! + 1
-
-                    if visited[newGameStatus] == nil || visited[newGameStatus] == false {
-                        visited[newGameStatus] = true
-                        statusQueue.append(newGameStatus)
-//                        print(pc.name, MoveDirection.down)
-
-                    }
-                    if gameManager.hasEnd() {
-                        print("found")
-                        while nowIndex < statusQueue.count {
-                            statusQueue.popLast()
-                        }
-                        return
-                    }
-                    gameManager.tryToMove(pc, direction: .up)
-                }
-                
-                
-                if gameManager.canMove(pc, direction: .left) {
-                    gameManager.tryToMove(pc, direction: .left)
-                    var newGameStatus = GameStatus(personControllers: gameManager.personControllers)
-                    newGameStatus.stepNum = gs.stepNum! + 1
-
-                    if visited[newGameStatus] == nil || visited[newGameStatus] == false {
-                        visited[newGameStatus] = true
-                        statusQueue.append(newGameStatus)
-//                        print(pc.name, MoveDirection.left)
-
-                    }
-                    if gameManager.hasEnd() {
-                        print("found")
-                        while nowIndex < statusQueue.count {
-                            statusQueue.popLast()
-                        }
-                        return
-                    }
-                    gameManager.tryToMove(pc, direction: .right)
-                }
-                
-                if gameManager.canMove(pc, direction: .right) {
-                    gameManager.tryToMove(pc, direction: .right)
-                    var newGameStatus = GameStatus(personControllers: gameManager.personControllers)
-                    newGameStatus.stepNum = gs.stepNum! + 1
-
-                    if visited[newGameStatus] == nil || visited[newGameStatus] == false {
-                        visited[newGameStatus] = true
-                        statusQueue.append(newGameStatus)
-//                        print(pc.name, MoveDirection.right)
-
-                    }
-                    if gameManager.hasEnd() {
-                        print("found")
-                        while nowIndex < statusQueue.count {
-                            statusQueue.popLast()
-                        }
-                        return
-                    }
-                    gameManager.tryToMove(pc, direction: .left)
-                }
-                
-                
-                
-            }
+    func solveByPersonControllers(_ personControllers: [PersonController]) {
+        let game = GameStatusForCpp(personControllers: personControllers)
+        guard let gameData = try? JSONEncoder().encode(game) else {
+            fatalError("unexpected game status \(game)")
         }
         
+        guard let gameString = String(data: gameData, encoding: .utf8) else {
+            fatalError("unexpected gameData \(gameData)")
+        }
+        let cppWrapper = CppWrapper()
+        guard let solveChars = cppWrapper.solveGame_Wrapped(gameString) else { fatalError() }
+        guard let solveStr = String(cString: solveChars, encoding: .utf8) else { fatalError() }
+        print(solveStr)
     }
     
 }

@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-struct Position: Hashable {
+struct Position: Hashable, Codable {
     var x: Int
     var y: Int
     
@@ -18,7 +18,7 @@ struct Position: Hashable {
     }
 }
 
-struct Size {
+struct Size: Codable {
     var width: Int
     var height: Int
     
