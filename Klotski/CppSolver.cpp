@@ -81,16 +81,13 @@ struct PersonStatus {
     }
     
     bool operator < (const PersonStatus &rhs) const {
-        if(name == rhs.name) {
-            if(position == rhs.position)
-                return size < rhs.size;
-            return position < rhs.position;
-        }
-        return name < rhs.name;
+        if(position == rhs.position)
+            return size < rhs.size;
+        return position < rhs.position;
     }
     
     bool operator == (const PersonStatus &rhs) const {
-        return name == rhs.name && position == rhs.position && size == rhs.size;
+        return position == rhs.position && size == rhs.size;
     }
 };
 
@@ -99,21 +96,21 @@ namespace std {
 template <>
 struct hash<Position> {
     size_t  operator () (const Position &key) const {
-        return (key.x << 3) | key.y;
+        return (key.x << 2) | key.y;
     }
 };
 
 template <>
 struct hash<Size> {
     size_t  operator () (const Size &key) const {
-        return (key.width << 3) | key.height;
+        return (key.width << 2) | key.height;
     }
 };
 
 template <>
 struct hash<PersonStatus> {
     size_t  operator () (const PersonStatus &key) const {
-        return ((hash<string>()(key.name)) | (hash<Position>()(key.position) << 3) | hash<Size>()(key.size));
+        return ((hash<Position>()(key.position)) | (hash<Size>()(key.size) << 5));
     }
 };
 }  // namespace std
@@ -166,7 +163,8 @@ struct GameStatus {
     bool canMove(const PersonStatus &ps, const MoveDirection &direction) {
         Position newPosition = Position(ps.position.x + offsetForDirection(direction).x,
                                         ps.position.y + offsetForDirection(direction).y);
-        if(newPosition.x < 0 || newPosition.x > 4 || newPosition.y < 0 || newPosition.y > 3) {
+        if(newPosition.x < 0 || newPosition.x + ps.size.height - 1 > 4
+           || newPosition.y < 0 || newPosition.y + ps.size.width - 1 > 3) {
             return false;
         }
         switch (direction) {
@@ -215,6 +213,20 @@ struct GameStatus {
         return newGs;
     }
     
+    GameStatus getReversedStatus() {
+        GameStatus reversed;
+        for(auto it = personStatuses.begin(); it != personStatuses.end(); it++) {
+            PersonStatus ps = *it;
+            if(ps.size.width == 1) {
+                ps.position.y = 3 - ps.position.y;
+            } else {
+                ps.position.y = 2 - ps.position.y;
+            }
+            reversed.appendPersonStatus(ps);
+        }
+        return reversed;
+    }
+    
     PersonStatus &findPersonStatusByName(const string &name) {
         for(auto it = personStatuses.begin(); it != personStatuses.end(); it++) {
             if(it -> name == name)
@@ -247,6 +259,14 @@ struct GameStatus {
         PersonStatus ps = findPersonStatusByName("caoCao");
         return ps.position == Position(3, 1);
     }
+    
+    void printStatus() {
+        for(auto it = personStatuses.begin(); it != personStatuses.end(); it++) {
+            //"soldier1"    :     PersonConfig(x: 4, y: 0, width: 1, height: 1),
+//            cout << it -> name << " " << it -> position.x << " " << it -> position.y << endl;
+            cout << "\"" << it -> name << "\"" << " : " << "PersonConfig(x: " << it -> position.x << ", y: " << it -> position.y << ", width: " << it -> size.width << ", height: " << it -> size.height << ")," << endl;
+        }
+    }
 };
 
 namespace std {
@@ -256,7 +276,7 @@ struct hash<GameStatus> {
         size_t sz = key.personStatuses.size();
         size_t ret = 0;
         for(int i = 0; i < sz; i++) {
-            ret <<= 3;
+            ret <<= 6;
             ret |= (hash<PersonStatus>()(key.personStatuses[i]));
         }
         return ret;
@@ -285,6 +305,7 @@ char *solveGame(char* gameString) {
     
     queue<GameStatus> q;
     unordered_map<GameStatus, bool> vis;
+    unordered_map<GameStatus, GameStatus> pre;
     q.push(gs);
     int cnt = 0;
     
@@ -303,9 +324,12 @@ char *solveGame(char* gameString) {
                     if(!vis[newGameStatus]) {
 //                        cout << nowGameStatus.personStatuses[i].name << " " << d << endl;
                         vis[newGameStatus] = true;
+                        vis[newGameStatus.getReversedStatus()] = true;
+                        pre[newGameStatus] = nowGameStatus;
                         q.push(newGameStatus);
                         if(newGameStatus.hasEnd()) {
                             cout << "FOUND" << endl;
+                            newGameStatus.printStatus();
                             return "hahahah";
                         }
                     }

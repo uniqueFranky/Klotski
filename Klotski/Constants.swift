@@ -39,6 +39,18 @@ let personConfigs: [String: PersonConfig] = [
     "huangZhong"  :     PersonConfig(x: 2, y: 0, width: 1, height: 2),
     "guanYu"      :     PersonConfig(x: 2, y: 1, width: 2, height: 1),
     "zhangFei"    :     PersonConfig(x: 2, y: 3, width: 1, height: 2),
+    
+//    "soldier1" : PersonConfig(x: 3, y: 3, width: 1, height: 1),
+//    "soldier2" : PersonConfig(x: 2, y: 0, width: 1, height: 1),
+//    "soldier3" : PersonConfig(x: 2, y: 1, width: 1, height: 1),
+//    "soldier4" : PersonConfig(x: 4, y: 3, width: 1, height: 1),
+//    "maChao" : PersonConfig(x: 0, y: 3, width: 1, height: 2),
+//    "caoCao" : PersonConfig(x: 3, y: 1, width: 2, height: 2),
+//    "huangZhong" : PersonConfig(x: 0, y: 1, width: 1, height: 2),
+//    "zhaoYun" : PersonConfig(x: 0, y: 2, width: 1, height: 2),
+//    "guanYu" : PersonConfig(x: 2, y: 2, width: 2, height: 1),
+//    "zhangFei" : PersonConfig(x: 0, y: 0, width: 1, height: 2),
+
 ]
 
 let personIds: [String: Int] = [
